@@ -8,3 +8,8 @@ export type Attributes = {
 };
 
 export type Class = "Barbarian" | "Wizard" | "Bard";
+
+export interface Character {
+    attributes: Attributes;
+    skills: Record<string, number>;
+}
