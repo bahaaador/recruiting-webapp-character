@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts';
 import { Attributes, Character } from './types';
+import { loadCharacter, saveCharacter } from './api';
 
 
 function App() {
+  const [initialized, setInitialized] = useState(false)
   const [character, setCharacter] = useState<Character>({
     attributes: {
       Strength: 10,
@@ -96,6 +98,32 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const fetchCharacter = async () => {
+      const savedCharacter = await loadCharacter();
+      
+      if (savedCharacter) {
+        setCharacter(savedCharacter);
+      }
+      setInitialized(true)
+    };
+    
+    fetchCharacter();
+  }, []); //on mount
+
+  useEffect(() => {
+    if(!initialized) // prevent data save on initial load
+      return;
+    const saveData = async () => {
+      try {
+        await saveCharacter(character);
+      } catch (error) {
+        console.error('Failed to save character:', error);
+      }
+    };
+    saveData();
+  }, [character]);
+  
   return (
     <div className="App">
       <header className="App-header">
