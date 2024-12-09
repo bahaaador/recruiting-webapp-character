@@ -30,6 +30,19 @@
   flex: 1 1 0;
   background-color: hsl(220deg 13% 13%);
   color: white;
+  display: flex;
+  justify-content: center;
+  /* spread sections */
+  flex-wrap: wrap;
+  /* space between sections */
+  /* gap: 10px; */
+}
+
+.App-section > div {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .App-link {
@@ -43,4 +56,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.class-card {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.class-card-active {
+  background-color: #4CAF50;
+}
+
+.class-card-inactive {
+  background-color: #f44336;
+}
+
+.skill-card {
+  border: 1px solid rgba(255, 255, 255, 0.192);
+  padding: 2px;
+  margin: 5px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: flex-start;
+  min-width: 500px;
+}
+
+.skill-card > span {
+  min-width: 120px;
+}
+
+.skill-card > * {
+  margin: 5px;
+}
+
+.skill-card-name {
+  min-width: 140px;
+  font-weight: bold;
 }
